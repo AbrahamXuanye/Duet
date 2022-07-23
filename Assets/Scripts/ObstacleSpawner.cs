@@ -30,16 +30,14 @@ public class ObstacleSpawner : MonoBehaviour
             {
                 case 0:
                     GameObject a= Instantiate(obstacle, leftSpawnerTranform);
-                    yield return new WaitForSeconds(spawnTime);
                     Destroy(a, 5);
                     break;
                 case 1:
                     GameObject b = Instantiate(obstacle, rightSpawnerTranform);
-                    yield return new WaitForSeconds(spawnTime);
                     Destroy(b, 5);
                     break;
             }
-            
+            yield return new WaitForSeconds(spawnTime);
         }
         
     }
