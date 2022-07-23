@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-
     public float spawnTime;
     public GameObject obstacle;
+    public Transform leftSpawnerTranform;
+    public Transform rightSpawnerTranform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +25,21 @@ public class ObstacleSpawner : MonoBehaviour
     {
         for (int i = 0; i < 100; i++)
         {
-            GameObject.Instantiate(obstacle);
-            yield return new WaitForSeconds(spawnTime);
+            int randomIndex = Random.Range(0, 2);
+            switch (randomIndex)
+            {
+                case 0:
+                    GameObject a= Instantiate(obstacle, leftSpawnerTranform);
+                    yield return new WaitForSeconds(spawnTime);
+                    Destroy(a, 5);
+                    break;
+                case 1:
+                    GameObject b = Instantiate(obstacle, rightSpawnerTranform);
+                    yield return new WaitForSeconds(spawnTime);
+                    Destroy(b, 5);
+                    break;
+            }
+            
         }
         
     }
